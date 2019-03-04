@@ -106,6 +106,7 @@ namespace TicTacToe
                 groupBoxPlay.Visible = true;
                 groupBoxLevel.Visible = true;
                 radioButtonO.Checked = true;
+                radioButtonAINovice.Checked = true;
                 btnNewGame_Click(sender,e);
             }
 
@@ -164,12 +165,18 @@ namespace TicTacToe
         {
             if (s == "X")
             {
-                countX++;
+                if (radioButtonAI.Checked && radioButtonX.Checked)
+                    countO++;
+                else
+                    countX++;
                 MessageBox.Show("X won!");                
             }
             else if (s == "O")
             {
-                countO++;
+                if ((radioButtonAI.Checked && radioButtonO.Checked) || radioButtonPlayer.Checked)
+                    countO++;
+                else
+                    countX++;
                 MessageBox.Show("O won!");
             }
             else
@@ -177,6 +184,11 @@ namespace TicTacToe
                 countDraws++;
                 MessageBox.Show("Draw!");
             }
+            newGame();
+        }
+
+        private void radioButtonAILevel_CheckedChanged(object sender, EventArgs e)
+        {
             newGame();
         }
 
@@ -254,9 +266,7 @@ namespace TicTacToe
                         if (countSteps == 5)
                             countSteps--;
                         else
-                        {
                             checkYourPosition("O", "X");
-                        }
                         if (countSteps == 5)
                             countSteps--;
                         else if (button00.Text == "O" && button12.Text == "O")
@@ -281,9 +291,7 @@ namespace TicTacToe
                         if (countSteps == 7)
                             countSteps--;
                         else
-                        {
-                            checkYourPosition("O", "X");
-                        }
+                            checkYourPosition("O", "X");                        
                         if (countSteps == 7)
                             countSteps--;
                         else if (button10.Text == "" && button12.Text == "")
@@ -302,16 +310,6 @@ namespace TicTacToe
                         }
                         break;
                     case 8:
-                        checkYourPosition("X", "X");
-                        if (countSteps == 9)
-                            countSteps--;
-                        else
-                        {
-                            checkYourPosition("O", "X");
-                        }
-                        if (countSteps == 9)
-                            countSteps--;
-                        else
                             randomButton("X");
                         break;
                 }
@@ -335,18 +333,90 @@ namespace TicTacToe
                             button22.Text = "O";
                         break;
                     case 3:
-                        a = r.Next(1, 5);
-                        if (button00.Text == "" || button02.Text=="" || button20.Text=="" || button22.Text=="")
+                        checkYourPosition("X", "O");
+                        if (countSteps == 4)
+                            countSteps--;
+                        else if (button11.Text == "X" || (button01.Text == "X" && button21.Text == "X") ||
+                            (button10.Text == "X" && button12.Text == "X") || (button00.Text == "X" && button22.Text == "X") ||
+                            (button20.Text == "X" && button02.Text == "X"))
                         {
+                            List<Button> listCorners = new List<Button> { button00, button02, button20, button22 };
+                            List<Button> listEmptyCorners = new List<Button>();
+                            foreach (Button b in listCorners)
+                            {
+                                if (b.Text == "")
+                                    listEmptyCorners.Add(b);
+                            }
+                            listEmptyCorners[r.Next(0, listEmptyCorners.Count)].Text = "O";
+                        }
+                        else if (button01.Text == "X" && button10.Text == "X")
+                            button00.Text = "O";
+                        else if (button01.Text == "X" && button12.Text == "X")
+                            button02.Text = "O";
+                        else if (button21.Text == "X" && button10.Text == "X")
+                            button20.Text = "O";
+                        else if (button12.Text == "X" && button21.Text == "X")
+                            button22.Text = "O";
+                        else if (button01.Text == "X" && (button20.Text == "X" || button22.Text == "X"))
+                        {
+                            a = r.Next(1, 3);
                             if (a == 1)
                                 button00.Text = "O";
-                            else if (a == 2)
+                            else
                                 button02.Text = "O";
-                            else if (a == 3)
+                        }
+                        else if (button10.Text == "X" && (button02.Text == "X" || button22.Text == "X"))
+                        {
+                            a = r.Next(1, 3);
+                            if (a == 1)
+                                button00.Text = "O";
+                            else
+                                button20.Text = "O";
+                        }
+                        else if (button21.Text == "X" && (button00.Text == "X" || button02.Text == "X"))
+                        {
+                            a = r.Next(1, 3);
+                            if (a == 1)
                                 button20.Text = "O";
                             else
                                 button22.Text = "O";
                         }
+                        else if (button12.Text == "X" && (button00.Text == "X" || button20.Text == "X"))
+                        {
+                            a = r.Next(1, 3);
+                            if (a == 1)
+                                button22.Text = "O";
+                            else
+                                button02.Text = "O";
+                        }
+                        break;
+                    case 5:
+                        checkYourPosition("O", "O");
+                        if (countSteps == 6)
+                        {
+                            countSteps--;
+                            break;
+                        }                            
+                        else
+                            checkYourPosition("X", "O");
+                        if (countSteps == 6)
+                            countSteps--;
+                        else
+                            randomButton("O");
+                        break;
+                    case 7:
+                        checkYourPosition("O", "O");
+                        if (countSteps == 8)
+                        {
+                            countSteps--;
+                            break;
+                        }                            
+                        else
+                            checkYourPosition("X", "O");
+                        if (countSteps == 8)
+                            countSteps--;
+                        else
+                            randomButton("O");
                         break;
                 }
             }
@@ -391,6 +461,18 @@ namespace TicTacToe
                 button11.Text = t;
             else if (button02.Text == s && button11.Text == s && button20.Text == "")
                 button20.Text = t;
+            else if (button01.Text == s && button11.Text == s && button21.Text == "")
+                button21.Text = t;
+            else if (button01.Text == s && button21.Text == s && button11.Text == "")
+                button11.Text = t;
+            else if (button21.Text == s && button11.Text == s && button01.Text == "")
+                button01.Text = t;
+            else if (button10.Text == s && button11.Text == s && button12.Text == "")
+                button12.Text = t;
+            else if (button10.Text == s && button12.Text == s && button11.Text == "")
+                button11.Text = t;
+            else if (button12.Text == s && button11.Text == s && button10.Text == "")
+                button10.Text = t;
             else
             {
                 countSteps--;
