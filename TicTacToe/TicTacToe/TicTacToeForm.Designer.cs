@@ -43,6 +43,18 @@
             this.labelDraw = new System.Windows.Forms.Label();
             this.labelO = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
+            this.radioButtonPlayer = new System.Windows.Forms.RadioButton();
+            this.radioButtonAI = new System.Windows.Forms.RadioButton();
+            this.radioButtonAINovice = new System.Windows.Forms.RadioButton();
+            this.radioButtonAIMaster = new System.Windows.Forms.RadioButton();
+            this.radioButtonX = new System.Windows.Forms.RadioButton();
+            this.radioButtonO = new System.Windows.Forms.RadioButton();
+            this.groupBoxPlay = new System.Windows.Forms.GroupBox();
+            this.groupBoxLevel = new System.Windows.Forms.GroupBox();
+            this.groupBoxMode = new System.Windows.Forms.GroupBox();
+            this.groupBoxPlay.SuspendLayout();
+            this.groupBoxLevel.SuspendLayout();
+            this.groupBoxMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // button00
@@ -149,7 +161,7 @@
             // labelX
             // 
             this.labelX.AutoSize = true;
-            this.labelX.Location = new System.Drawing.Point(331, 74);
+            this.labelX.Location = new System.Drawing.Point(296, 191);
             this.labelX.Name = "labelX";
             this.labelX.Size = new System.Drawing.Size(40, 13);
             this.labelX.TabIndex = 2;
@@ -158,7 +170,7 @@
             // labelDraw
             // 
             this.labelDraw.AutoSize = true;
-            this.labelDraw.Location = new System.Drawing.Point(331, 137);
+            this.labelDraw.Location = new System.Drawing.Point(296, 254);
             this.labelDraw.Name = "labelDraw";
             this.labelDraw.Size = new System.Drawing.Size(40, 13);
             this.labelDraw.TabIndex = 2;
@@ -167,7 +179,7 @@
             // labelO
             // 
             this.labelO.AutoSize = true;
-            this.labelO.Location = new System.Drawing.Point(331, 105);
+            this.labelO.Location = new System.Drawing.Point(296, 222);
             this.labelO.Name = "labelO";
             this.labelO.Size = new System.Drawing.Size(41, 13);
             this.labelO.TabIndex = 2;
@@ -184,11 +196,120 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // radioButtonPlayer
+            // 
+            this.radioButtonPlayer.AutoSize = true;
+            this.radioButtonPlayer.Checked = true;
+            this.radioButtonPlayer.Location = new System.Drawing.Point(6, 10);
+            this.radioButtonPlayer.Name = "radioButtonPlayer";
+            this.radioButtonPlayer.Size = new System.Drawing.Size(87, 17);
+            this.radioButtonPlayer.TabIndex = 4;
+            this.radioButtonPlayer.TabStop = true;
+            this.radioButtonPlayer.Text = "versus player";
+            this.radioButtonPlayer.UseVisualStyleBackColor = true;
+            this.radioButtonPlayer.CheckedChanged += new System.EventHandler(this.radioButtonPlayer_CheckedChanged);
+            // 
+            // radioButtonAI
+            // 
+            this.radioButtonAI.AutoSize = true;
+            this.radioButtonAI.Location = new System.Drawing.Point(6, 34);
+            this.radioButtonAI.Name = "radioButtonAI";
+            this.radioButtonAI.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonAI.TabIndex = 5;
+            this.radioButtonAI.Text = "versus AI";
+            this.radioButtonAI.UseVisualStyleBackColor = true;
+            this.radioButtonAI.CheckedChanged += new System.EventHandler(this.radioButtonAI_CheckedChanged);
+            // 
+            // radioButtonAINovice
+            // 
+            this.radioButtonAINovice.AutoSize = true;
+            this.radioButtonAINovice.Checked = true;
+            this.radioButtonAINovice.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonAINovice.Name = "radioButtonAINovice";
+            this.radioButtonAINovice.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonAINovice.TabIndex = 9;
+            this.radioButtonAINovice.TabStop = true;
+            this.radioButtonAINovice.Text = "Novice";
+            this.radioButtonAINovice.UseVisualStyleBackColor = true;
+            this.radioButtonAINovice.CheckedChanged += new System.EventHandler(this.radioButtonAILevel_CheckedChanged);
+            // 
+            // radioButtonAIMaster
+            // 
+            this.radioButtonAIMaster.AutoSize = true;
+            this.radioButtonAIMaster.Location = new System.Drawing.Point(6, 43);
+            this.radioButtonAIMaster.Name = "radioButtonAIMaster";
+            this.radioButtonAIMaster.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonAIMaster.TabIndex = 10;
+            this.radioButtonAIMaster.Text = "Master";
+            this.radioButtonAIMaster.UseVisualStyleBackColor = true;
+            this.radioButtonAIMaster.CheckedChanged += new System.EventHandler(this.radioButtonAILevel_CheckedChanged);
+            // 
+            // radioButtonX
+            // 
+            this.radioButtonX.AutoSize = true;
+            this.radioButtonX.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonX.Name = "radioButtonX";
+            this.radioButtonX.Size = new System.Drawing.Size(32, 17);
+            this.radioButtonX.TabIndex = 9;
+            this.radioButtonX.Text = "X";
+            this.radioButtonX.UseVisualStyleBackColor = true;
+            this.radioButtonX.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // radioButtonO
+            // 
+            this.radioButtonO.AutoSize = true;
+            this.radioButtonO.Checked = true;
+            this.radioButtonO.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonO.Name = "radioButtonO";
+            this.radioButtonO.Size = new System.Drawing.Size(33, 17);
+            this.radioButtonO.TabIndex = 10;
+            this.radioButtonO.TabStop = true;
+            this.radioButtonO.Text = "O";
+            this.radioButtonO.UseVisualStyleBackColor = true;
+            this.radioButtonO.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // groupBoxPlay
+            // 
+            this.groupBoxPlay.Controls.Add(this.radioButtonX);
+            this.groupBoxPlay.Controls.Add(this.radioButtonO);
+            this.groupBoxPlay.Location = new System.Drawing.Point(299, 90);
+            this.groupBoxPlay.Name = "groupBoxPlay";
+            this.groupBoxPlay.Size = new System.Drawing.Size(83, 63);
+            this.groupBoxPlay.TabIndex = 11;
+            this.groupBoxPlay.TabStop = false;
+            this.groupBoxPlay.Text = "AI plays with:";
+            this.groupBoxPlay.Visible = false;
+            // 
+            // groupBoxLevel
+            // 
+            this.groupBoxLevel.Controls.Add(this.radioButtonAINovice);
+            this.groupBoxLevel.Controls.Add(this.radioButtonAIMaster);
+            this.groupBoxLevel.Location = new System.Drawing.Point(396, 90);
+            this.groupBoxLevel.Name = "groupBoxLevel";
+            this.groupBoxLevel.Size = new System.Drawing.Size(75, 63);
+            this.groupBoxLevel.TabIndex = 12;
+            this.groupBoxLevel.TabStop = false;
+            this.groupBoxLevel.Text = "AI level:";
+            this.groupBoxLevel.Visible = false;
+            // 
+            // groupBoxMode
+            // 
+            this.groupBoxMode.Controls.Add(this.radioButtonPlayer);
+            this.groupBoxMode.Controls.Add(this.radioButtonAI);
+            this.groupBoxMode.Location = new System.Drawing.Point(333, 12);
+            this.groupBoxMode.Name = "groupBoxMode";
+            this.groupBoxMode.Size = new System.Drawing.Size(101, 58);
+            this.groupBoxMode.TabIndex = 13;
+            this.groupBoxMode.TabStop = false;
+            // 
             // TicTacToeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 371);
+            this.Controls.Add(this.groupBoxMode);
+            this.Controls.Add(this.groupBoxLevel);
+            this.Controls.Add(this.groupBoxPlay);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.labelO);
             this.Controls.Add(this.labelDraw);
@@ -208,6 +329,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tic Tac Toe Game";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBoxPlay.ResumeLayout(false);
+            this.groupBoxPlay.PerformLayout();
+            this.groupBoxLevel.ResumeLayout(false);
+            this.groupBoxLevel.PerformLayout();
+            this.groupBoxMode.ResumeLayout(false);
+            this.groupBoxMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +357,15 @@
         private System.Windows.Forms.Label labelDraw;
         private System.Windows.Forms.Label labelO;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.RadioButton radioButtonPlayer;
+        private System.Windows.Forms.RadioButton radioButtonAI;
+        private System.Windows.Forms.RadioButton radioButtonAINovice;
+        private System.Windows.Forms.RadioButton radioButtonAIMaster;
+        private System.Windows.Forms.RadioButton radioButtonX;
+        private System.Windows.Forms.RadioButton radioButtonO;
+        private System.Windows.Forms.GroupBox groupBoxPlay;
+        private System.Windows.Forms.GroupBox groupBoxLevel;
+        private System.Windows.Forms.GroupBox groupBoxMode;
     }
 }
 
