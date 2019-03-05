@@ -337,8 +337,7 @@ namespace TicTacToe
                         if (countSteps == 4)
                             countSteps--;
                         else if (button11.Text == "X" || (button01.Text == "X" && button21.Text == "X") ||
-                            (button10.Text == "X" && button12.Text == "X") || (button00.Text == "X" && button22.Text == "X") ||
-                            (button20.Text == "X" && button02.Text == "X"))
+                            (button10.Text == "X" && button12.Text == "X"))
                         {
                             List<Button> listCorners = new List<Button> { button00, button02, button20, button22 };
                             List<Button> listEmptyCorners = new List<Button>();
@@ -348,6 +347,12 @@ namespace TicTacToe
                                     listEmptyCorners.Add(b);
                             }
                             listEmptyCorners[r.Next(0, listEmptyCorners.Count)].Text = "O";
+                        }
+                        else if ((button00.Text == "X" && button22.Text == "X") ||
+                            (button20.Text == "X" && button02.Text == "X"))
+                        {
+                            List<Button> listNonCorners = new List<Button> { button01, button10, button12, button21 };
+                            listNonCorners[r.Next(0, listNonCorners.Count)].Text = "O";
                         }
                         else if (button01.Text == "X" && button10.Text == "X")
                             button00.Text = "O";
